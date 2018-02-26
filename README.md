@@ -1,7 +1,7 @@
-Monochrome Browsing
+Grayscale Browsing
 ====
 
-A simple Firefox extension that toggles monochromatic viewing on individual tabs.
+A simple Firefox extension that toggles grayscale viewing on individual tabs.
 
 Based on the [Your second WebExtension](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Your_second_WebExtension) tutorial on [MDN](https://developer.mozilla.org/).
 

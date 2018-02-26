@@ -1,9 +1,9 @@
 {
     "manifest_version": 2,
-    "name": "Monochrome Browsing",
-    "version": "1.0",
+    "name": "Grayscale Browsing",
+    "version": "1.1",
 
-    "description": "Toggle monochromaticity on the active tab for the ultimate reading experience",
+    "description": "Toggle grayscale on the active tab for the ultimate reading experience",
 
     "icons": {
         "48": "icons/contrast.png"
