@@ -9,16 +9,22 @@
         "48": "icons/contrast.png"
     },
 
-    "permissions": [
-        "activeTab"
-    ],
+    "permissions": [ "tabs" ],
 
     "browser_action": {
-        "default_icon": "icons/contrast.png",
+        "default_icon": "icons/icon_off.png",
         "browser_style": true
     },
 
     "background": {
         "scripts": [ "background.js" ]
-    }
+    },
+	
+    "content_scripts": [
+      {
+        "matches": [ "<all_urls>" ],
+        "js": [ "content-script.js" ]
+      }
+    ]
+
 }

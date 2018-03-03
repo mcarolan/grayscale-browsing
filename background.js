@@ -1,6 +1,12 @@
+let grayscale = false;
+
+function stateMessage() {
+  return { 'type': 'state', currentState: grayscale };
+}
+
 function sendToggleMessages(tabs) {
     for (let tab of tabs) {
-        browser.tabs.sendMessage(tab.id, { 'command': 'toggle' }).catch(onError);
+        browser.tabs.sendMessage(tab.id, stateMessage()).catch(onError);
     }
 }
 
@@ -9,9 +15,18 @@ function onError(error) {
 }
 
 function extensionButtonClicked() {
-    browser.tabs.executeScript({file: '/content-script.js', allFrames: true}).then(() => {
-        browser.tabs.query({active: true, currentWindow: true}).then(sendToggleMessages);
+    grayscale = !grayscale;
+    let iconPath = grayscale ? 'icons/icon_on.png' : 'icons/icon_off.png';
+    browser.browserAction.setIcon({ path: iconPath }).then(() => {
+	    browser.tabs.query({}).then(sendToggleMessages);
     });
 }
 
+function onReceiveMessage(message, sender, sendResponse) {
+  if (message.type == 'stateQuery') {
+    sendResponse(stateMessage());
+  }
+}
+
 browser.browserAction.onClicked.addListener(extensionButtonClicked);
+browser.runtime.onMessage.addListener(onReceiveMessage);

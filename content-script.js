@@ -6,25 +6,22 @@
 
     const grayscaleFilter = 'grayscale(1)';
 
-    function getFilter() {
-        return document.body.style.filter;
-    }    
+    let initialValue = document.body.style.filter;
 
     function setFilter(value) {
         document.body.style.filter = value;
     }
 
-    function toggle() {
-        if (getFilter() == grayscaleFilter) {
-            setFilter('');        
-        } else {
-            setFilter(grayscaleFilter);
-        }
-    };
+    function handle(message) {
+      if (message.type == 'state') {
+        if (message.currentState)
+          setFilter(grayscaleFilter);
+        else
+          setFilter(initialValue);
+      }
+    }
 
-    browser.runtime.onMessage.addListener((message) => {
-        if (message.command == 'toggle') {
-            toggle();        
-        }
-    });
+    browser.runtime.onMessage.addListener(handle);
+    browser.runtime.sendMessage({ 'type': 'stateQuery' }).then(handle);
+
 })();
