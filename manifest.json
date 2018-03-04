@@ -6,7 +6,7 @@
     "description": "Toggle grayscale on the active tab for the ultimate reading experience",
 
     "icons": {
-        "48": "icons/contrast.png"
+        "48": "icons/icon_on.png"
     },
 
     "permissions": [ "tabs" ],
